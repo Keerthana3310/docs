@@ -1,0 +1,44 @@
+         ASSIGNMENT 1
+Let A=[1 6 5 2] u=[6 -5] v=[3 -2]
+Are u and v eigen vectors of A.
+
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Define matrix A and vectors u, v
+A = np.array([[1, 6], [5, 2]])
+u = np.array([6, -5])
+v = np.array([3, -2])
+
+# Calculate A * u and A * v
+Au = np.dot(A, u)
+Av = np.dot(A, v)
+
+# Calculate eigenvalues and eigenvectors of A
+eigenvalues, eigenvectors = np.linalg.eig(A)
+
+# Plotting
+plt.figure(figsize=(8, 6))
+
+# Plot original vectors
+plt.plot([0, u[0]], [0, u[1]], label='u', color='b')
+plt.plot([0, v[0]], [0, v[1]], label='v', color='r')
+
+# Plot resulting vectors after applying A
+plt.plot([0, Au[0]], [0, Au[1]], label='A * u', color='b', linestyle='--')
+plt.plot([0, Av[0]], [0, Av[1]], label='A * v', color='r', linestyle='--')
+
+# Plot eigenvectors
+for i in range(len(eigenvalues)):
+    plt.plot([0, eigenvectors[0, i]], [0, eigenvectors[1, i]], label=f'eigenvalue {i+1}', linestyle=':', color='g')
+
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('Visualization of eigenvectors')
+plt.legend()
+plt.grid(True)
+plt.axis('equal')
+plt.show()
+
+
